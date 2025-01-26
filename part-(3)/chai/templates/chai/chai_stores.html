@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+ 
+chai detai_page
+{% endblock title %}
+
+{% block content %}
+
+<h1 class=" text-5xl font-extrabold mb-4">chai detail page </h1>
+
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit"> serch store</button>    
+
+</form>
+
+{% if store %}
+<h2>Store avalible</h2>
+
+<ul>
+
+    {% for i in store %}
+    <li>{{ i.name }} --- {{ i.locations }}</li>
+    
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% endblock content %}
+
+

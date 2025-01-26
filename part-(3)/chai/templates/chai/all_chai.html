@@ -1,0 +1,62 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Chai Collection
+{% endblock title %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative bg-cover bg-center h-96" style="background-image: url('https://images.unsplash.com/photo-1514516873608-1b9a00c11c31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080');">
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white">
+        <h1 class="text-5xl font-extrabold mb-4">Explore Our Chai</h1>
+        <p class="text-lg mb-6">
+            Handcrafted blends for every mood. Find your perfect cup today.
+        </p>
+    </div>
+</section>
+
+<!-- Chai Collection -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto">
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-12">Our Exclusive Chai Collection</h2>
+        
+        <!-- Grid Layout for Chai Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for i in chais %}
+            <!-- Card -->
+            <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition">
+                <!-- Chai Image -->
+                <img src="{{ i.image.url }}" alt="{{ i.name }}" class="w-full h-48 object-cover rounded-t-lg">
+                
+                <!-- Chai Content -->
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ i.name }}</h3>
+                    <p class="text-gray-600 mb-4">Type: <span class="font-semibold">{{ i.type }}</span></p>
+                    <p class="text-lg text-gray-800 font-bold mb-4">Price: ${{ i.price }}</p>
+                    
+                    <!-- Action Button -->
+                    <a href="{% url 'chai_detail' i.id %}">
+                        <button class="w-full bg-yellow-600 text-white py-2 rounded-lg hover:bg-yellow-700 transition">
+                            View Details
+                        </button>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto text-center">
+        <p>&copy; 2024 Coffee Haven. All rights reserved.</p>
+        <div class="flex justify-center space-x-6 mt-4">
+            <a href="#" class="hover:text-yellow-400">Facebook</a>
+            <a href="#" class="hover:text-yellow-400">Instagram</a>
+            <a href="#" class="hover:text-yellow-400">Twitter</a>
+        </div>
+    </div>
+</footer>
+{% endblock content %}
